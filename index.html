@@ -7,262 +7,97 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --cream:   #faf7f2;
-      --cream2:  #f4ede2;
-      --sand:    #e8ddd0;
-      --tan:     #c9b49a;
-      --brown:   #7a5c3e;
-      --dark:    #2e2318;
-      --navy:    #1c2e47;
-      --white:   #ffffff;
-      --accent:  #a07850;
+      --cream:#faf7f2; --cream2:#f4ede2; --sand:#e8ddd0;
+      --tan:#c9b49a; --brown:#7a5c3e; --dark:#2e2318;
+      --navy:#1c2e47; --white:#ffffff; --accent:#a07850;
     }
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Nunito', sans-serif;
-      background: var(--cream);
-      color: var(--dark);
-      font-size: 15px;
-      line-height: 1.75;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-      background: rgba(250,247,242,0.93);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--sand);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0 5vw; height: 62px;
-    }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; font-weight: 600; color: var(--navy);
-    }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      font-size: .78rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; text-decoration: none; color: var(--brown);
-      transition: color .2s;
-    }
-    .nav-links a:hover { color: var(--navy); }
-
-    /* HERO */
-    .hero {
-      min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
-      background: var(--white); padding-top: 62px;
-    }
-    .hero-text {
-      display: flex; flex-direction: column; justify-content: center;
-      padding: 6vw 5vw 6vw 8vw;
-    }
-    .hero-eyebrow {
-      font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: 1.2rem; font-weight: 700;
-    }
-    .hero-name {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 4.5vw, 5rem);
-      font-weight: 400; line-height: 1.08; color: var(--navy); margin-bottom: .5rem;
-    }
-    .hero-name em { font-style: italic; color: var(--accent); }
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; font-style: italic; color: var(--tan); margin-bottom: 2rem;
-    }
-    .hero-bio {
-      max-width: 470px; color: #5a4a38; font-size: .95rem; margin-bottom: 2.2rem;
-    }
-    .hero-contact {
-      display: flex; flex-direction: column; gap: .45rem;
-      font-size: .85rem; color: var(--brown); font-weight: 600;
-    }
-    .hero-contact a { color: var(--brown); text-decoration: none; }
-    .hero-contact a:hover { color: var(--navy); text-decoration: underline; }
-    .hero-photo { position: relative; overflow: hidden; background: var(--cream2); }
-    .hero-photo img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: center top; display: block;
-    }
-    .hero-photo::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to right, var(--white) 0%, transparent 20%);
-    }
-
-    /* SECTIONS */
-    section { padding: 5.5rem 8vw; }
-    .section-label {
-      font-size: .72rem; letter-spacing: .22em; text-transform: uppercase;
-      color: var(--accent); margin-bottom: .6rem; font-weight: 700;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 3vw, 2.8rem);
-      font-weight: 400; color: var(--navy); margin-bottom: 2.8rem;
-    }
-    .divider { width: 44px; height: 2px; background: var(--tan); border-radius: 2px; margin: .8rem 0 2.8rem; }
-
-    /* STATS */
-    #logros { background: var(--navy); }
-    #logros .section-title { color: var(--cream); }
-    #logros .section-label { color: var(--tan); }
-    .stats-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 1.8rem;
-    }
-    .stat-card {
-      text-align: center; padding: 2rem 1.2rem;
-      border: 1px solid rgba(255,255,255,.08); border-radius: 16px;
-      background: rgba(255,255,255,.04); transition: background .3s, transform .3s;
-    }
-    .stat-card:hover { background: rgba(255,255,255,.09); transform: translateY(-3px); }
-    .stat-number {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem; font-weight: 400; color: var(--tan); line-height: 1;
-    }
-    .stat-suffix { font-size: 1.6rem; color: var(--accent); }
-    .stat-label {
-      font-size: .74rem; letter-spacing: .06em; text-transform: uppercase;
-      color: rgba(249,245,239,.5); margin-top: .6rem; font-weight: 600;
-    }
-
-    /* TIMELINE */
-    #experiencia { background: var(--cream); }
-    .timeline { position: relative; padding-left: 2rem; }
-    .timeline::before {
-      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-      width: 1px; background: var(--sand);
-    }
-    .tl-item { position: relative; margin-bottom: 3rem; }
-    .tl-item::before {
-      content: ''; position: absolute; left: -2.3rem; top: .6rem;
-      width: 10px; height: 10px; border-radius: 50%;
-      background: var(--accent); border: 2px solid var(--cream);
-      box-shadow: 0 0 0 2px var(--tan);
-    }
-    .tl-period {
-      font-size: .71rem; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--tan); margin-bottom: .25rem; font-weight: 700;
-    }
-    .tl-role {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.3rem; font-weight: 600; color: var(--navy);
-    }
-    .tl-company { font-size: .88rem; color: var(--accent); margin-bottom: .6rem; font-weight: 700; }
-    .tl-description { color: #5a4a38; font-size: .92rem; }
-    .tl-budget {
-      display: inline-block; margin-top: .5rem;
-      font-size: .75rem; font-weight: 700;
-      background: var(--cream2); color: var(--brown);
-      padding: .2rem .8rem; border-radius: 20px; border: 1px solid var(--sand);
-    }
-    .tl-tags { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .8rem; }
-    .tag {
-      font-size: .7rem; letter-spacing: .08em; text-transform: uppercase;
-      padding: .25rem .75rem; border: 1px solid var(--tan);
-      border-radius: 20px; color: var(--brown); font-weight: 700;
-    }
-
-    /* PROYECTOS */
-    #proyectos { background: var(--cream2); }
-    .projects-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 1.8rem;
-    }
-    .project-card {
-      background: var(--white); border-radius: 16px; overflow: hidden;
-      box-shadow: 0 2px 18px rgba(43,31,20,.07);
-      transition: transform .3s, box-shadow .3s;
-    }
-    .project-card:hover { transform: translateY(-5px); box-shadow: 0 10px 34px rgba(43,31,20,.13); }
-    .project-header { background: var(--navy); padding: 1.4rem 1.6rem; }
-    .project-location {
-      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--tan); margin-bottom: .3rem; font-weight: 700;
-    }
-    .project-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; font-weight: 600; color: var(--cream);
-    }
-    .project-body { padding: 1.4rem 1.6rem; }
-    .project-value {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem; color: var(--accent); font-weight: 400; margin-bottom: .4rem;
-    }
-    .project-desc { font-size: .88rem; color: #5a4a38; }
-    .project-role {
-      margin-top: .8rem; font-size: .75rem; letter-spacing: .08em;
-      text-transform: uppercase; color: var(--brown); font-weight: 700;
-    }
-
-    /* FORMACIÓN */
-    #formacion { background: var(--white); }
-    .edu-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.4rem;
-    }
-    .edu-card {
-      border-left: 3px solid var(--tan); padding: 1.2rem 1.4rem;
-      background: var(--cream); border-radius: 0 12px 12px 0; transition: border-color .2s;
-    }
-    .edu-card:hover { border-color: var(--accent); }
-    .edu-year {
-      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--tan); margin-bottom: .3rem; font-weight: 700;
-    }
-    .edu-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: .2rem;
-    }
-    .edu-institution { font-size: .82rem; color: var(--accent); font-weight: 700; }
-
-    /* COMPETENCIAS */
-    #competencias { background: var(--cream2); }
-    .skills-wrapper { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; }
-    .skills-group h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 1.2rem;
-    }
-    .skill-item { margin-bottom: 1rem; }
-    .skill-name {
-      display: flex; justify-content: space-between;
-      font-size: .84rem; color: var(--dark); margin-bottom: .32rem; font-weight: 600;
-    }
-    .skill-level { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--tan); font-weight: 700; }
-    .skill-bar { height: 4px; background: var(--sand); border-radius: 4px; overflow: hidden; }
-    .skill-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--tan), var(--accent));
-      border-radius: 4px; animation: fillBar 1.3s ease forwards; width: 0;
-    }
-    @keyframes fillBar { to { width: var(--pct); } }
-    .method-grid { display: flex; flex-wrap: wrap; gap: .7rem; }
-    .method-pill {
-      background: var(--white); border: 1px solid var(--tan);
-      color: var(--brown); font-size: .76rem; font-weight: 700;
-      letter-spacing: .06em; text-transform: uppercase;
-      padding: .4rem .9rem; border-radius: 30px;
-      transition: background .2s, color .2s;
-    }
-    .method-pill:hover { background: var(--navy); color: var(--cream); border-color: var(--navy); }
-
-    /* FOOTER */
-    footer {
-      background: var(--dark); color: rgba(249,245,239,.45);
-      text-align: center; padding: 3rem;
-      font-size: .82rem; letter-spacing: .06em; font-weight: 600;
-    }
-    footer span { color: var(--tan); }
-
-    /* ANIMATIONS */
-    .fade-up { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s ease; }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 860px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-photo { height: 55vw; order: -1; }
-      .hero-photo::after { background: linear-gradient(to bottom, transparent 70%, var(--white)); }
-      .hero-text { padding: 3rem 6vw; }
-      .skills-wrapper { grid-template-columns: 1fr; gap: 2rem; }
-      .nav-links { display: none; }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--dark);font-size:15px;line-height:1.75}
+    nav{position:fixed;top:0;left:0;width:100%;z-index:100;background:rgba(250,247,242,.93);backdrop-filter:blur(10px);border-bottom:1px solid var(--sand);display:flex;justify-content:space-between;align-items:center;padding:0 5vw;height:62px}
+    .nav-logo{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--navy)}
+    .nav-links{display:flex;gap:2rem;list-style:none}
+    .nav-links a{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;color:var(--brown);transition:color .2s}
+    .nav-links a:hover{color:var(--navy)}
+    .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;background:var(--white);padding-top:62px}
+    .hero-text{display:flex;flex-direction:column;justify-content:center;padding:6vw 5vw 6vw 8vw}
+    .hero-eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;font-weight:700}
+    .hero-name{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,4.5vw,5rem);font-weight:400;line-height:1.08;color:var(--navy);margin-bottom:.5rem}
+    .hero-name em{font-style:italic;color:var(--accent)}
+    .hero-title{font-family:'Playfair Display',serif;font-size:1.15rem;font-style:italic;color:var(--tan);margin-bottom:2rem}
+    .hero-bio{max-width:470px;color:#5a4a38;font-size:.95rem;margin-bottom:2.2rem}
+    .hero-contact{display:flex;flex-direction:column;gap:.45rem;font-size:.85rem;color:var(--brown);font-weight:600}
+    .hero-contact a{color:var(--brown);text-decoration:none}
+    .hero-contact a:hover{color:var(--navy);text-decoration:underline}
+    .hero-photo{position:relative;overflow:hidden;background:var(--cream2)}
+    .hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+    .hero-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,var(--white) 0%,transparent 20%)}
+    section{padding:5.5rem 8vw}
+    .section-label{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:.6rem;font-weight:700}
+    .section-title{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3vw,2.8rem);font-weight:400;color:var(--navy);margin-bottom:2.8rem}
+    .divider{width:44px;height:2px;background:var(--tan);border-radius:2px;margin:.8rem 0 2.8rem}
+    #logros{background:var(--navy)}
+    #logros .section-title{color:var(--cream)}
+    #logros .section-label{color:var(--tan)}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1.8rem}
+    .stat-card{text-align:center;padding:2rem 1.2rem;border:1px solid rgba(255,255,255,.08);border-radius:16px;background:rgba(255,255,255,.04);transition:background .3s,transform .3s}
+    .stat-card:hover{background:rgba(255,255,255,.09);transform:translateY(-3px)}
+    .stat-number{font-family:'Playfair Display',serif;font-size:2.8rem;font-weight:400;color:var(--tan);line-height:1}
+    .stat-suffix{font-size:1.6rem;color:var(--accent)}
+    .stat-label{font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(249,245,239,.5);margin-top:.6rem;font-weight:600}
+    #experiencia{background:var(--cream)}
+    .timeline{position:relative;padding-left:2rem}
+    .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:var(--sand)}
+    .tl-item{position:relative;margin-bottom:3rem}
+    .tl-item::before{content:'';position:absolute;left:-2.3rem;top:.6rem;width:10px;height:10px;border-radius:50%;background:var(--accent);border:2px solid var(--cream);box-shadow:0 0 0 2px var(--tan)}
+    .tl-period{font-size:.71rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tan);margin-bottom:.25rem;font-weight:700}
+    .tl-role{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:600;color:var(--navy)}
+    .tl-company{font-size:.88rem;color:var(--accent);margin-bottom:.6rem;font-weight:700}
+    .tl-description{color:#5a4a38;font-size:.92rem}
+    .tl-budget{display:inline-block;margin-top:.5rem;font-size:.75rem;font-weight:700;background:var(--cream2);color:var(--brown);padding:.2rem .8rem;border-radius:20px;border:1px solid var(--sand)}
+    .tl-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+    .tag{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .75rem;border:1px solid var(--tan);border-radius:20px;color:var(--brown);font-weight:700}
+    #proyectos{background:var(--cream2)}
+    .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.8rem}
+    .project-card{background:var(--white);border-radius:16px;overflow:hidden;box-shadow:0 2px 18px rgba(43,31,20,.07);transition:transform .3s,box-shadow .3s}
+    .project-card:hover{transform:translateY(-5px);box-shadow:0 10px 34px rgba(43,31,20,.13)}
+    .project-header{background:var(--navy);padding:1.4rem 1.6rem}
+    .project-location{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tan);margin-bottom:.3rem;font-weight:700}
+    .project-name{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--cream)}
+    .project-body{padding:1.4rem 1.6rem}
+    .project-value{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--accent);font-weight:400;margin-bottom:.4rem}
+    .project-desc{font-size:.88rem;color:#5a4a38}
+    .project-role{margin-top:.8rem;font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brown);font-weight:700}
+    #formacion{background:var(--white)}
+    .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:1.4rem}
+    .edu-card{border-left:3px solid var(--tan);padding:1.2rem 1.4rem;background:var(--cream);border-radius:0 12px 12px 0;transition:border-color .2s}
+    .edu-card:hover{border-color:var(--accent)}
+    .edu-year{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tan);margin-bottom:.3rem;font-weight:700}
+    .edu-title{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;color:var(--navy);margin-bottom:.2rem}
+    .edu-institution{font-size:.82rem;color:var(--accent);font-weight:700}
+    #competencias{background:var(--cream2)}
+    .skills-wrapper{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem}
+    .skills-group h3{font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600;color:var(--navy);margin-bottom:1.2rem}
+    .skill-item{margin-bottom:1rem}
+    .skill-name{display:flex;justify-content:space-between;font-size:.84rem;color:var(--dark);margin-bottom:.32rem;font-weight:600}
+    .skill-level{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tan);font-weight:700}
+    .skill-bar{height:4px;background:var(--sand);border-radius:4px;overflow:hidden}
+    .skill-fill{height:100%;background:linear-gradient(90deg,var(--tan),var(--accent));border-radius:4px;animation:fillBar 1.3s ease forwards;width:0}
+    @keyframes fillBar{to{width:var(--pct)}}
+    .method-grid{display:flex;flex-wrap:wrap;gap:.7rem}
+    .method-pill{background:var(--white);border:1px solid var(--tan);color:var(--brown);font-size:.76rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.4rem .9rem;border-radius:30px;transition:background .2s,color .2s}
+    .method-pill:hover{background:var(--navy);color:var(--cream);border-color:var(--navy)}
+    footer{background:var(--dark);color:rgba(249,245,239,.45);text-align:center;padding:3rem;font-size:.82rem;letter-spacing:.06em;font-weight:600}
+    footer span{color:var(--tan)}
+    .fade-up{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+    .fade-up.visible{opacity:1;transform:translateY(0)}
+    @media(max-width:860px){
+      .hero{grid-template-columns:1fr}
+      .hero-photo{height:55vw;order:-1}
+      .hero-photo::after{background:linear-gradient(to bottom,transparent 70%,var(--white))}
+      .hero-text{padding:3rem 6vw}
+      .skills-wrapper{grid-template-columns:1fr;gap:2rem}
+      .nav-links{display:none}
     }
   </style>
 </head>
@@ -279,18 +114,15 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="inicio">
   <div class="hero-text fade-up">
     <p class="hero-eyebrow">Portafolio Profesional</p>
     <h1 class="hero-name">Mónica<br/><em>Vega</em> Rentería</h1>
     <p class="hero-title">Superintendente de Innovación · Ingeniera Civil</p>
-    <p class="hero-bio">
-      Ingeniera civil con más de 15 años de experiencia en gestión de proyectos y una pasión constante por transformar, innovar y generar impacto real. Especialista en soluciones digitales de alto valor — IoT, Power Platform, BI — y en fomentar culturas innovadoras con metodologías ágiles y design thinking.
-    </p>
+    <p class="hero-bio">Ingeniera civil con más de 15 años de experiencia en gestión de proyectos y una pasión constante por transformar, innovar y generar impacto real. Especialista en soluciones digitales de alto valor — IoT, Power Platform, BI — y en fomentar culturas innovadoras con metodologías ágiles y design thinking.</p>
     <div class="hero-contact">
       <span>📞 +51 976 397 560</span>
-      <a href="/cdn-cgi/l/email-protection#c1acaeafa8a2a0efb7a4a6a0efb3a4afb5a4b3a8a081a6aca0a8adefa2aeac"><span class="__cf_email__" data-cfemail="fd909293949e9cd38b989a9cd38f989389988f949cbd9a909c9491d39e9290">[email&#160;protected]</span></a>
+      <a href="mailto:monica.vega.renteria@gmail.com">monica.vega.renteria@gmail.com</a>
       <span>📍 Lima, Perú</span>
     </div>
   </div>
@@ -299,53 +131,26 @@
   </div>
 </section>
 
-<!-- LOGROS -->
 <section id="logros">
   <p class="section-label">Trayectoria en cifras</p>
   <h2 class="section-title">Logros destacados</h2>
   <div class="stats-grid">
-    <div class="stat-card fade-up">
-      <div class="stat-number">15<span class="stat-suffix">+</span></div>
-      <div class="stat-label">Años de experiencia</div>
-    </div>
-    <div class="stat-card fade-up" style="transition-delay:.08s">
-      <div class="stat-number">13</div>
-      <div class="stat-label">Personas en equipo de innovación</div>
-    </div>
-    <div class="stat-card fade-up" style="transition-delay:.16s">
-      <div class="stat-number">USD 913<span class="stat-suffix">k</span></div>
-      <div class="stat-label">Presupuesto de innovación 2025</div>
-    </div>
-    <div class="stat-card fade-up" style="transition-delay:.24s">
-      <div class="stat-number">USD 800<span class="stat-suffix">M+</span></div>
-      <div class="stat-label">En proyectos gestionados</div>
-    </div>
-    <div class="stat-card fade-up" style="transition-delay:.32s">
-      <div class="stat-number">6</div>
-      <div class="stat-label">Países de operación</div>
-    </div>
-    <div class="stat-card fade-up" style="transition-delay:.4s">
-      <div class="stat-number">USD 175<span class="stat-suffix">k</span></div>
-      <div class="stat-label">Ahorro identificado — Empleada del Mes</div>
-    </div>
-    <div class="stat-card fade-up" style="transition-delay:.48s">
-      <div class="stat-number">23<span class="stat-suffix">%</span></div>
-      <div class="stat-label">Margen en proyecto Constancia</div>
-    </div>
-    <div class="stat-card fade-up" style="transition-delay:.56s">
-      <div class="stat-number">1<span class="stat-suffix">er</span></div>
-      <div class="stat-label">Lugar · Ing. Civil · UDEP</div>
-    </div>
+    <div class="stat-card fade-up"><div class="stat-number">15<span class="stat-suffix">+</span></div><div class="stat-label">Años de experiencia</div></div>
+    <div class="stat-card fade-up" style="transition-delay:.08s"><div class="stat-number">13</div><div class="stat-label">Personas en equipo de innovación</div></div>
+    <div class="stat-card fade-up" style="transition-delay:.16s"><div class="stat-number">USD 913<span class="stat-suffix">k</span></div><div class="stat-label">Presupuesto de innovación 2025</div></div>
+    <div class="stat-card fade-up" style="transition-delay:.24s"><div class="stat-number">USD 800<span class="stat-suffix">M+</span></div><div class="stat-label">En proyectos gestionados</div></div>
+    <div class="stat-card fade-up" style="transition-delay:.32s"><div class="stat-number">6</div><div class="stat-label">Países de operación</div></div>
+    <div class="stat-card fade-up" style="transition-delay:.40s"><div class="stat-number">USD 175<span class="stat-suffix">k</span></div><div class="stat-label">Ahorro identificado — Empleada del Mes</div></div>
+    <div class="stat-card fade-up" style="transition-delay:.48s"><div class="stat-number">23<span class="stat-suffix">%</span></div><div class="stat-label">Margen en proyecto Constancia</div></div>
+    <div class="stat-card fade-up" style="transition-delay:.56s"><div class="stat-number">1<span class="stat-suffix">er</span></div><div class="stat-label">Lugar · Ing. Civil · UDEP</div></div>
   </div>
 </section>
 
-<!-- EXPERIENCIA -->
 <section id="experiencia">
   <p class="section-label">Trayectoria profesional</p>
   <h2 class="section-title">Experiencia laboral</h2>
   <div class="divider"></div>
   <div class="timeline">
-
     <div class="tl-item fade-up">
       <p class="tl-period">Mayo 2025 — Presente</p>
       <p class="tl-role">Superintendente de Innovación</p>
@@ -354,41 +159,36 @@
       <span class="tl-budget">Presupuesto 2025: USD 913k</span>
       <div class="tl-tags"><span class="tag">Estrategia</span><span class="tag">Liderazgo</span><span class="tag">IoT</span></div>
     </div>
-
     <div class="tl-item fade-up">
       <p class="tl-period">Octubre 2023 — Abril 2025 · 1 año 6 meses</p>
       <p class="tl-role">Jefe de Innovación</p>
       <p class="tl-company">STRACON Group · Lima, Perú</p>
-      <p class="tl-description">Creación y gestión del Sistema de Innovación del Grupo: estrategia, gobernanza y modelo de negocio. Portafolio de proyectos digitales (IoT, gestión de flotas). Dashboards BI generando ahorros mediante alertas y toma de decisiones oportunas. Talleres de ideación y cultura de innovación.</p>
+      <p class="tl-description">Creación y gestión del Sistema de Innovación del Grupo: estrategia, gobernanza y modelo de negocio. Portafolio IoT y gestión de flotas. Dashboards BI generando ahorros. Talleres de ideación y cultura de innovación.</p>
       <span class="tl-budget">Presupuesto 2024: USD 779k</span>
       <div class="tl-tags"><span class="tag">Power Platform</span><span class="tag">Business Intelligence</span><span class="tag">Design Thinking</span></div>
     </div>
-
     <div class="tl-item fade-up">
       <p class="tl-period">Marzo 2022 — Septiembre 2023 · 1 año 7 meses</p>
       <p class="tl-role">Jefe de Innovación</p>
       <p class="tl-company">STRACON · Lima, Perú</p>
-      <p class="tl-description">Líder del programa STRACON 4.0. Product Owner de soluciones de tareo, asistencia y rotación de personal. Co-creadora del Framework 4D para desarrollo de productos de innovación. Facilitadora de talleres de ideación.</p>
+      <p class="tl-description">Líder del programa STRACON 4.0. Product Owner de soluciones de tareo, asistencia y rotación de personal. Co-creadora del Framework 4D para productos de innovación. Facilitadora de talleres de ideación.</p>
       <span class="tl-budget">Presupuesto 2022: USD 280k · 2023: USD 368k</span>
       <div class="tl-tags"><span class="tag">Product Owner</span><span class="tag">Framework 4D</span><span class="tag">Transformación Digital</span></div>
     </div>
-
     <div class="tl-item fade-up">
       <p class="tl-period">Agosto 2019 — Febrero 2022 · 2 años 7 meses</p>
       <p class="tl-role">Jefe de Planeamiento y Control de Gestión</p>
       <p class="tl-company">STRACON · Lima, Perú</p>
-      <p class="tl-description">Arranque integral de proyectos clave: Quellaveco (USD 61M), Antamina Fase VII (USD 124M), San Rafael (USD 10M). Implementación del módulo PS de SAP 4/HANNA.</p>
+      <p class="tl-description">Arranque integral de proyectos: Quellaveco (USD 61M), Antamina Fase VII (USD 124M), San Rafael (USD 10M). Implementación módulo PS de SAP 4/HANNA.</p>
       <div class="tl-tags"><span class="tag">SAP 4/HANNA</span><span class="tag">Control de Costos</span><span class="tag">Minería</span></div>
     </div>
-
     <div class="tl-item fade-up">
       <p class="tl-period">Abril 2018 — Julio 2019 · 1 año 4 meses</p>
       <p class="tl-role">Jefe de Oficina Técnica</p>
       <p class="tl-company">STRACON · Aurora Gold Mine, Guyana</p>
-      <p class="tl-description">Explotación a tajo abierto (USD 68.4M). Implementación de SAP ERP-PS y herramientas tecnológicas para Gestión Humana, dashboards de Mantenimiento y Control.</p>
+      <p class="tl-description">Explotación a tajo abierto (USD 68.4M). Implementación de SAP ERP-PS y herramientas digitales para Gestión Humana y dashboards de Mantenimiento.</p>
       <div class="tl-tags"><span class="tag">SAP ERP</span><span class="tag">Dashboards</span><span class="tag">Gold Mining</span></div>
     </div>
-
     <div class="tl-item fade-up">
       <p class="tl-period">Enero 2014 — Enero 2017 · 3 años</p>
       <p class="tl-role">Jefe de Oficina Técnica</p>
@@ -396,7 +196,6 @@
       <p class="tl-description">Proyecto de USD 310M: TMF, 1.2 km de túnel, línea de transmisión y montaje de planta. Forecasting, Valor Ganado y control integral de costos.</p>
       <div class="tl-tags"><span class="tag">Valor Ganado</span><span class="tag">Forecasting</span><span class="tag">Licitaciones</span></div>
     </div>
-
     <div class="tl-item fade-up">
       <p class="tl-period">Diciembre 2011 — Mayo 2013 · 1 año 6 meses</p>
       <p class="tl-role">Jefe de Oficina Técnica</p>
@@ -404,7 +203,6 @@
       <p class="tl-description">Movimiento de tierras (2012: USD 140M, 2013: USD 240M). Presupuesto meta que aseguró el mayor margen. Premio al Mejor Empleado 2011.</p>
       <div class="tl-tags"><span class="tag">23% margen</span><span class="tag">Mejor Empleado 2011</span></div>
     </div>
-
     <div class="tl-item fade-up">
       <p class="tl-period">Mayo 2010 — Noviembre 2011 · 1 año 8 meses</p>
       <p class="tl-role">Ingeniera de Oficina Técnica</p>
@@ -412,235 +210,101 @@
       <p class="tl-description">Proyectos Orcopampa y Poracota, minería subterránea (USD 46M). Alcanzó 23% de margen, 4% por encima del objetivo. Ahorro de USD 175k — "Empleada del Mes".</p>
       <div class="tl-tags"><span class="tag">Minería Subterránea</span><span class="tag">Empleada del Mes</span><span class="tag">Negociación</span></div>
     </div>
-
   </div>
 </section>
 
-<!-- PROYECTOS -->
 <section id="proyectos">
   <p class="section-label">Portafolio de proyectos</p>
   <h2 class="section-title">Proyectos destacados</h2>
   <div class="projects-grid">
-
     <div class="project-card fade-up">
-      <div class="project-header">
-        <p class="project-location">Lima, Perú · 2022–Presente</p>
-        <p class="project-name">STRACON 4.0 – Transformación Digital</p>
-      </div>
-      <div class="project-body">
-        <p class="project-value">Innovación Corporativa</p>
-        <p class="project-desc">Digitalización integral: tareo, asistencia, rotación de personal e indicadores en tiempo real. Framework 4D para desarrollo de productos.</p>
-        <p class="project-role">Product Owner · Líder Creativa</p>
-      </div>
+      <div class="project-header"><p class="project-location">Lima, Perú · 2022–Presente</p><p class="project-name">STRACON 4.0 – Transformación Digital</p></div>
+      <div class="project-body"><p class="project-value">Innovación Corporativa</p><p class="project-desc">Digitalización integral: tareo, asistencia, rotación de personal e indicadores en tiempo real. Framework 4D para desarrollo de productos.</p><p class="project-role">Product Owner · Líder Creativa</p></div>
     </div>
-
     <div class="project-card fade-up" style="transition-delay:.1s">
-      <div class="project-header">
-        <p class="project-location">Lima, Perú · 2023–Presente</p>
-        <p class="project-name">Sistema de Innovación Corporativo</p>
-      </div>
-      <div class="project-body">
-        <p class="project-value">USD 779k – 913k / año</p>
-        <p class="project-desc">Diseño y gestión del sistema de innovación: estrategia, gobernanza, portafolio IoT y dashboards BI.</p>
-        <p class="project-role">Superintendente de Innovación</p>
-      </div>
+      <div class="project-header"><p class="project-location">Lima, Perú · 2023–Presente</p><p class="project-name">Sistema de Innovación Corporativo</p></div>
+      <div class="project-body"><p class="project-value">USD 779k – 913k / año</p><p class="project-desc">Diseño y gestión del sistema de innovación: estrategia, gobernanza, portafolio IoT y dashboards BI.</p><p class="project-role">Superintendente de Innovación</p></div>
     </div>
-
     <div class="project-card fade-up" style="transition-delay:.2s">
-      <div class="project-header">
-        <p class="project-location">Moquegua, Perú · 2019–2022</p>
-        <p class="project-name">Mina Quellaveco – Haul Roads</p>
-      </div>
-      <div class="project-body">
-        <p class="project-value">USD 61M · 3 años</p>
-        <p class="project-desc">Desarrollo de Haul Roads y explotación a tajo abierto. Arranque integral y jefatura de planeamiento.</p>
-        <p class="project-role">Jefe de Planeamiento y Costos</p>
-      </div>
+      <div class="project-header"><p class="project-location">Moquegua, Perú · 2019–2022</p><p class="project-name">Mina Quellaveco – Haul Roads</p></div>
+      <div class="project-body"><p class="project-value">USD 61M · 3 años</p><p class="project-desc">Desarrollo de Haul Roads y explotación a tajo abierto. Arranque integral y jefatura de planeamiento.</p><p class="project-role">Jefe de Planeamiento y Costos</p></div>
     </div>
-
     <div class="project-card fade-up" style="transition-delay:.3s">
-      <div class="project-header">
-        <p class="project-location">Ancash, Perú · 2019–2022</p>
-        <p class="project-name">Antamina – Presa de Relaves Fase VII</p>
-      </div>
-      <div class="project-body">
-        <p class="project-value">USD 124M · 3 años</p>
-        <p class="project-desc">Recrecimiento de presa de relaves en una de las minas más grandes de Perú.</p>
-        <p class="project-role">Facilitadora de Arranque</p>
-      </div>
+      <div class="project-header"><p class="project-location">Ancash, Perú · 2019–2022</p><p class="project-name">Antamina – Presa de Relaves Fase VII</p></div>
+      <div class="project-body"><p class="project-value">USD 124M · 3 años</p><p class="project-desc">Recrecimiento de presa de relaves en una de las minas más grandes de Perú.</p><p class="project-role">Facilitadora de Arranque</p></div>
     </div>
-
     <div class="project-card fade-up" style="transition-delay:.4s">
-      <div class="project-header">
-        <p class="project-location">Donoso, Panamá · 2014–2017</p>
-        <p class="project-name">Cobre Panamá – Planta & Túnel</p>
-      </div>
-      <div class="project-body">
-        <p class="project-value">USD 310M · 3 años</p>
-        <p class="project-desc">TMF, 1.2 km de túnel, línea de transmisión y montaje de planta. Control de costos y forecasting.</p>
-        <p class="project-role">Jefe de Oficina Técnica</p>
-      </div>
+      <div class="project-header"><p class="project-location">Donoso, Panamá · 2014–2017</p><p class="project-name">Cobre Panamá – Planta & Túnel</p></div>
+      <div class="project-body"><p class="project-value">USD 310M · 3 años</p><p class="project-desc">TMF, 1.2 km de túnel, línea de transmisión y montaje de planta. Control de costos y forecasting.</p><p class="project-role">Jefe de Oficina Técnica</p></div>
     </div>
-
     <div class="project-card fade-up" style="transition-delay:.5s">
-      <div class="project-header">
-        <p class="project-location">Guyana · 2018–2019</p>
-        <p class="project-name">Aurora Gold Mine</p>
-      </div>
-      <div class="project-body">
-        <p class="project-value">USD 68.4M · 3 años</p>
-        <p class="project-desc">Tajo abierto con implementación de SAP ERP-PS y herramientas digitales de gestión y mantenimiento.</p>
-        <p class="project-role">Jefe de Oficina Técnica</p>
-      </div>
+      <div class="project-header"><p class="project-location">Guyana · 2018–2019</p><p class="project-name">Aurora Gold Mine</p></div>
+      <div class="project-body"><p class="project-value">USD 68.4M · 3 años</p><p class="project-desc">Tajo abierto con implementación de SAP ERP-PS y herramientas digitales de gestión.</p><p class="project-role">Jefe de Oficina Técnica</p></div>
     </div>
-
   </div>
 </section>
 
-<!-- FORMACIÓN -->
 <section id="formacion">
   <p class="section-label">Educación y certificaciones</p>
   <h2 class="section-title">Formación académica</h2>
   <div class="edu-grid">
-    <div class="edu-card fade-up">
-      <p class="edu-year">2023–2025</p>
-      <p class="edu-title">Maestría: Transformación Digital de Negocios</p>
-      <p class="edu-institution">Universidad Peruana de Ciencias Aplicadas UPC · Lima</p>
-    </div>
-    <div class="edu-card fade-up" style="transition-delay:.06s">
-      <p class="edu-year">2024–2025</p>
-      <p class="edu-title">Programa de Liderazgo</p>
-      <p class="edu-institution">PAD Universidad de Piura · Perú</p>
-    </div>
-    <div class="edu-card fade-up" style="transition-delay:.12s">
-      <p class="edu-year">2005–2009 · Titulada 2012</p>
-      <p class="edu-title">Ingeniería Civil — 1er lugar · 15.61/20</p>
-      <p class="edu-institution">Universidad de Piura, Perú</p>
-    </div>
-    <div class="edu-card fade-up" style="transition-delay:.18s">
-      <p class="edu-year">Feb–May 2023</p>
-      <p class="edu-title">Diplomado: Identificación, Rediseño e Innovación de Procesos</p>
-      <p class="edu-institution">TEC de Monterrey, México · 96 horas</p>
-    </div>
-    <div class="edu-card fade-up" style="transition-delay:.24s">
-      <p class="edu-year">Julio 2023</p>
-      <p class="edu-title">MOOC: Gobierno de Datos</p>
-      <p class="edu-institution">DMC · Perú</p>
-    </div>
-    <div class="edu-card fade-up" style="transition-delay:.3s">
-      <p class="edu-year">Mayo–Jul 2020</p>
-      <p class="edu-title">Data Science y Big Data: Decisiones basadas en Datos</p>
-      <p class="edu-institution">MIT xPRO, EEUU · 1.80 CEUs</p>
-    </div>
-    <div class="edu-card fade-up" style="transition-delay:.36s">
-      <p class="edu-year">Agosto 2020</p>
-      <p class="edu-title">Introduction to Data Science (DS0101EN)</p>
-      <p class="edu-institution">IBM · edX · Certificado verificado</p>
-    </div>
-    <div class="edu-card fade-up" style="transition-delay:.42s">
-      <p class="edu-year">Mar–Abr 2021</p>
-      <p class="edu-title">Foundations of Happiness at Work</p>
-      <p class="edu-institution">University of California, Berkeley, EEUU</p>
-    </div>
+    <div class="edu-card fade-up"><p class="edu-year">2023–2025</p><p class="edu-title">Maestría: Transformación Digital de Negocios</p><p class="edu-institution">Universidad Peruana de Ciencias Aplicadas UPC · Lima</p></div>
+    <div class="edu-card fade-up" style="transition-delay:.06s"><p class="edu-year">2024–2025</p><p class="edu-title">Programa de Liderazgo</p><p class="edu-institution">PAD Universidad de Piura · Perú</p></div>
+    <div class="edu-card fade-up" style="transition-delay:.12s"><p class="edu-year">2005–2009 · Titulada 2012</p><p class="edu-title">Ingeniería Civil — 1er lugar · 15.61/20</p><p class="edu-institution">Universidad de Piura, Perú</p></div>
+    <div class="edu-card fade-up" style="transition-delay:.18s"><p class="edu-year">Feb–May 2023</p><p class="edu-title">Diplomado: Identificación, Rediseño e Innovación de Procesos</p><p class="edu-institution">TEC de Monterrey, México · 96 horas</p></div>
+    <div class="edu-card fade-up" style="transition-delay:.24s"><p class="edu-year">Julio 2023</p><p class="edu-title">MOOC: Gobierno de Datos</p><p class="edu-institution">DMC · Perú</p></div>
+    <div class="edu-card fade-up" style="transition-delay:.30s"><p class="edu-year">Mayo–Jul 2020</p><p class="edu-title">Data Science y Big Data</p><p class="edu-institution">MIT xPRO, EEUU · 1.80 CEUs</p></div>
+    <div class="edu-card fade-up" style="transition-delay:.36s"><p class="edu-year">Agosto 2020</p><p class="edu-title">Introduction to Data Science (DS0101EN)</p><p class="edu-institution">IBM · edX · Certificado verificado</p></div>
+    <div class="edu-card fade-up" style="transition-delay:.42s"><p class="edu-year">Mar–Abr 2021</p><p class="edu-title">Foundations of Happiness at Work</p><p class="edu-institution">University of California, Berkeley, EEUU</p></div>
   </div>
 </section>
 
-<!-- COMPETENCIAS -->
 <section id="competencias">
   <p class="section-label">Habilidades y metodologías</p>
   <h2 class="section-title">Competencias</h2>
   <div class="skills-wrapper">
-
     <div class="skills-group fade-up">
       <h3>Software & Herramientas</h3>
-      <div class="skill-item">
-        <div class="skill-name"><span>SAP S/4HANA – Módulo PS</span><span class="skill-level">Avanzado</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:92%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name"><span>Microsoft Excel</span><span class="skill-level">Avanzado</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:90%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name"><span>Power Platform / Power BI</span><span class="skill-level">Intermedio</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:68%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name"><span>CCS Candy</span><span class="skill-level">Intermedio</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:65%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name"><span>Oracle ERP</span><span class="skill-level">Intermedio</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:60%"></div></div>
-      </div>
+      <div class="skill-item"><div class="skill-name"><span>SAP S/4HANA – Módulo PS</span><span class="skill-level">Avanzado</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:92%"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Microsoft Excel</span><span class="skill-level">Avanzado</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:90%"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Power Platform / Power BI</span><span class="skill-level">Intermedio</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:68%"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>CCS Candy</span><span class="skill-level">Intermedio</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:65%"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Oracle ERP</span><span class="skill-level">Intermedio</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:60%"></div></div></div>
     </div>
-
     <div class="skills-group fade-up" style="transition-delay:.1s">
       <h3>Competencias Profesionales</h3>
-      <div class="skill-item">
-        <div class="skill-name"><span>Innovación y Estrategia Digital</span><span class="skill-level">Experta</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:95%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name"><span>Gestión de Proyectos (PMP/LPS)</span><span class="skill-level">Experta</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:94%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name"><span>Control de Costos y Forecasting</span><span class="skill-level">Experta</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:93%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name"><span>Liderazgo de Equipos</span><span class="skill-level">Avanzada</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:90%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name"><span>Data Science / Big Data</span><span class="skill-level">Intermedio</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:58%"></div></div>
-      </div>
+      <div class="skill-item"><div class="skill-name"><span>Innovación y Estrategia Digital</span><span class="skill-level">Experta</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:95%"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Gestión de Proyectos (PMP/LPS)</span><span class="skill-level">Experta</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:94%"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Control de Costos y Forecasting</span><span class="skill-level">Experta</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:93%"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Liderazgo de Equipos</span><span class="skill-level">Avanzada</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:90%"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Data Science / Big Data</span><span class="skill-level">Intermedio</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:58%"></div></div></div>
     </div>
-
     <div class="skills-group fade-up" style="transition-delay:.2s">
       <h3>Idiomas</h3>
-      <div class="skill-item">
-        <div class="skill-name"><span>Español</span><span class="skill-level">Nativo</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:100%"></div></div>
-      </div>
-      <div class="skill-item">
-        <div class="skill-name"><span>Inglés</span><span class="skill-level">Avanzado</span></div>
-        <div class="skill-bar"><div class="skill-fill" style="--pct:80%"></div></div>
-      </div>
+      <div class="skill-item"><div class="skill-name"><span>Español</span><span class="skill-level">Nativo</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:100%"></div></div></div>
+      <div class="skill-item"><div class="skill-name"><span>Inglés</span><span class="skill-level">Avanzado</span></div><div class="skill-bar"><div class="skill-fill" style="--pct:80%"></div></div></div>
       <div style="margin-top:2rem">
         <h3 style="margin-bottom:1rem">Metodologías</h3>
         <div class="method-grid">
-          <span class="method-pill">SCRUM</span>
-          <span class="method-pill">Kanban</span>
-          <span class="method-pill">Design Sprint</span>
-          <span class="method-pill">Design Thinking</span>
-          <span class="method-pill">PMP</span>
-          <span class="method-pill">Last Planner</span>
-          <span class="method-pill">Industria 4.0</span>
-          <span class="method-pill">IoT</span>
-          <span class="method-pill">Gobierno de Datos</span>
-          <span class="method-pill">IA</span>
+          <span class="method-pill">SCRUM</span><span class="method-pill">Kanban</span><span class="method-pill">Design Sprint</span>
+          <span class="method-pill">Design Thinking</span><span class="method-pill">PMP</span><span class="method-pill">Last Planner</span>
+          <span class="method-pill">Industria 4.0</span><span class="method-pill">IoT</span><span class="method-pill">Gobierno de Datos</span><span class="method-pill">IA</span>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <footer>
   <p>© 2026 <span>Mónica Vega Rentería</span> · Superintendente de Innovación · Lima, Perú</p>
-  <p style="margin-top:.5rem">
-    <a href="/cdn-cgi/l/email-protection#701d1f1e1913115e061517115e02151e041502191130171d11191c5e131f1d" style="color:var(--tan);text-decoration:none"><span class="__cf_email__" data-cfemail="b6dbd9d8dfd5d798c0d3d1d798c4d3d8c2d3c4dfd7f6d1dbd7dfda98d5d9db">[email&#160;protected]</span></a>
-    &nbsp;·&nbsp; +51 976 397 560
-  </p>
+  <p style="margin-top:.5rem"><a href="mailto:monica.vega.renteria@gmail.com" style="color:var(--tan);text-decoration:none">monica.vega.renteria@gmail.com</a> &nbsp;·&nbsp; +51 976 397 560</p>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  const barObserver = new IntersectionObserver((entri
+<script>
+  const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible') }), {threshold:0.1});
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  const bObs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.querySelectorAll('.skill-fill').forEach(f => f.style.animationPlayState='running') }), {threshold:0.2});
+  document.querySelectorAll('.skills-group').forEach(g => { g.querySelectorAll('.skill-fill').forEach(f => f.style.animationPlayState='paused'); bObs.observe(g) });
+</script>
+</body>
+</html>
